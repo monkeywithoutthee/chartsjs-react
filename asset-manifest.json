@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yoydc/static/css/main.322700c8.css",
+    "main.js": "/yoydc/static/js/main.24271b53.js",
+    "index.html": "/yoydc/index.html",
+    "main.322700c8.css.map": "/yoydc/static/css/main.322700c8.css.map",
+    "main.24271b53.js.map": "/yoydc/static/js/main.24271b53.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.322700c8.css",
+    "static/js/main.24271b53.js"
+  ]
+}
