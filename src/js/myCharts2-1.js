@@ -189,6 +189,7 @@ window.init = (()=>{
                                   //  el.style.zindex = 5000;
                                     el.style.position = 'absolute';
                                     el.style.display = 'block';
+                                    el.style.opacity = 1;
                                     el.style.top = context.element.y+'px';
                                     el.style.left = context.element.x*1+20+'px';
                                   //  console.log(context.element.x*1+200,context.element.x-200+'px','<<label:: comparing::',this._chart.width)
@@ -638,4 +639,21 @@ window.init = (()=>{
       if(num){
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
-    }
+  };
+
+  window.fadeOut = ((elem)=>{
+
+      var opacity = 1;
+      var timer = setInterval( function() {
+        opacity -= 50 / 250;
+        if( opacity <= 0 )
+        {
+          clearInterval(timer);
+          opacity = 0;
+          elem.style.display = "none";
+          //elem.style.visibility = "hidden";
+        }
+        elem.style.opacity = opacity;
+        elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+      }, 50 );
+    });
