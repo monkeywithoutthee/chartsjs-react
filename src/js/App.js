@@ -43,9 +43,6 @@ export default class App extends React.Component {
     var el = document.querySelector('.popover');
       //  console.log(el.style.display,'<<clicking call');
     if (el.style.display ==='block'){
-      //el.style.display ='none';
-      //transition: margin-right 2s ease-in-out .5s;
-      //el.style.transition = 'display 2s none .5s';
       window.fadeOut(el);
     };
   };
