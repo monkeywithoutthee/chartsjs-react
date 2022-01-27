@@ -17,12 +17,10 @@ export default class App extends React.Component {
   componentDidMount(){
     console.log('componentDidMount')
 
-  //  setTimeout(function () {
       window.ctx = document.getElementById('myChart').getContext('2d');
       window.Chart = Chart;
       //console.log('ready::::',Chart);
       window.init();
-  //  }, 1000);
 
 
   }
