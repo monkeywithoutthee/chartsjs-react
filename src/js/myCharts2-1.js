@@ -55,6 +55,11 @@ window.init = (()=>{
                           bottom: 5
                         }
                     },
+                elements:{
+                  line:{
+                    borderJoinStyle:'round'
+                  }
+                },
                 plugins: {
                         tooltip: {
                           enabled: false,
@@ -80,7 +85,8 @@ window.init = (()=>{
                                     tooltipEl.id = 'chartjs-tooltip';
                                     tooltipEl.innerHTML = '<div style=\"border-radius:10px;\"></div>';
                                     tooltipEl.style = 'border-radius:10px;border-style:solid;border-width:0.5px;z-index:2000;';
-                                    document.body.appendChild(tooltipEl);
+                                    //document.body.appendChild(tooltipEl);
+                                    document.querySelector('.popover').appendChild(tooltipEl);
                                 }
 
                                 // Hide if no tooltip
@@ -180,14 +186,14 @@ window.init = (()=>{
                               const el = document.querySelector('.popover');
                               //{value:context.raw,year:context.dataset.label,monthNo:context.dataIndex,month:context.element.label}
                                     el.innerHTML = returnDataExt({value:context.raw,year:context.dataset.label,monthNo:context.dataIndex,month:context.label});
-                                    el.style.zindex = 5000;
+                                  //  el.style.zindex = 5000;
                                     el.style.position = 'absolute';
                                     el.style.display = 'block';
                                     el.style.top = context.element.y+'px';
-                                    el.style.left = context.element.x+'px';
+                                    el.style.left = context.element.x*1+20+'px';
                                   //  console.log(context.element.x*1+200,context.element.x-200+'px','<<label:: comparing::',this._chart.width)
-                                    if (context.element.x*1+200>this._chart.width){
-                                      el.style.left = context.element.x-200+'px';
+                                    if (context.element.x*1+250>=this._chart.width){
+                                      el.style.left = context.element.x-270+'px';
                                     }
                                     document.body.appendChild(el);
                                   //console.log(el,'<<label::',context);
@@ -203,7 +209,7 @@ window.init = (()=>{
       //  console.log(window.Chart.defaults.global.defaultColor,'drawraph;;',dataSets,window.Chart.defaults);
     //    window.Chart.defaults.global.defaultColor = 'rgba(0,0,0,0.8)';
     //    window.Chart.defaults.global.defaultFontColor = 'rgba(255,255,255,0.9)';
-    //    window.Chart.defaults.global.fontColor = '#fafafa';
+    //    window.Chart.defaults.global.fontColor = 'yellow';
 
         var oStyle = document.getElementById('myChart');
         oStyle.style.backgroundColor = 'rgba(0,0,0,0.4)';
@@ -409,7 +415,7 @@ window.init = (()=>{
               //(100 * iaverage * averagePeriod) / (icumulat);//gets the percentage rise from last data.year
               var sHTML = `<div>
                             <div class='toolTipInfo'><b>${data.month} ${data.year} : ${nwCs(data.value)}</b> deaths</div>`
-                            if (data.year >= ifirstYear){
+                            if (data.year > ifirstYear){
                               sHTML += `<div class='toolTipInfo'>prev yr <i>(${data.month}&nbsp;${data.year-1})</i> : ${nwCs(oReturnMobject.lastyear)}\n deaths</div>
                               <div class='toolTipInfo'>fluctuation : ${nwCs(sflux)}&nbsp;(${iPerc.toFixed(2)}%)</div>
                               <div class='toolTipInfo'>cumulative : ${nwCs(thisRs)} in ${data.year}</div>
@@ -628,5 +634,8 @@ window.init = (()=>{
     }
 
     function nwCs(num) {
+    //  console.log('nwCs::',num)
+      if(num){
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
     }
